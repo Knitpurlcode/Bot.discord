@@ -1,7 +1,10 @@
-const Discord = require('discord.js')
+// Import the discord.js module
+const Discord = require('discord.js');
 
+// Token storage
 const config = require("./config.json");
 
+// Create an instance of a Discord client
 const bot = new Discord.Client()
 
 // Attach a listener function
@@ -11,11 +14,24 @@ bot.on('guildMemberAdd', console.log);
 bot.emit('guildMemberAdd', 'These params', 'will be logged', 'via the listener.');
 
 
-// //parler à intervalle régulière
+/**
+ * A bot that welcomes new guild members when they join
+ */
+
+/**
+ * The ready event is vital, it means that only _after_ this will your bot start reacting to information
+ * received from Discord
+ */
+bot.on('ready', () => {
+  console.log('I am ready!');
+});
+
+
+//parler à intervalle régulière
 bot.on('ready', function (){
-    let testChannel = bot.channels.cache.get('813344318198120508');
+    let testChannel = bot.channels.cache.get('813344321083539469');
     console.log("testChannel="+ testChannel);
-    setInterval(() => {testChannel.send("@everyone Trop mignon !!")}, 120000);
+    setInterval(() => {testChannel.send("@everyone Salut !")}, 60000);
 })
 
 //Jouer à un jeu
@@ -31,13 +47,15 @@ bot.on('message', function (message){
 });
 
 
-//Accueillir les gens
+// Accueillir les gens
 bot.on('guildMemberAdd', function (member){
-    console.log()
-    let theChannel = bot.channels.cache.get('813344318198120508');
+    let theChannel = bot.channels.cache.get('813344321083539469');
     console.log('theChannel= ' + theChannel)
     theChannel.send('Salut ' + member.user.username + 'ca boum ?')
 });
 
+
+
+// Log the bot in using the token from https://discord.com/developers/applications
 bot.login(config.BOT_TOKEN);
 
