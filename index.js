@@ -51,7 +51,7 @@ bot.on('message', function (message){
 bot.on('guildMemberAdd', function (member){
     let theChannel = bot.channels.cache.get('813344321083539469');
     console.log('theChannel= ' + theChannel)
-    theChannel.send('Salut ' + member.user.username + 'ca boum ?')
+    theChannel.send('Salut ' + member.user.username + ' ça boum ?')
 });
 
 
